@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>صنع بكل حب💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(#a7989a, #a48991);
+  }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .card {
+    background: rgba(167, 152, 154, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 25px;
+    padding: 25px;
+    margin: 20px auto;
+    box-shadow: 0 10px 25px rgba(55, 34, 34, 0.5);
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    animation: fadeIn 1s ease;
+  }
+
+  h1, h2 { color: #562f3c; margin: 10px 0; }
+
+  .card input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 20px;
+    border: 2px solid #562f3c;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .card button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(45deg,#edd1d5, #562f3c);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .card button:hover { transform: scale(1.05); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .hidden { display: none; }
+
+  .message { text-align: right; line-height: 1.9; font-size: 18px; color: #444; }
+
+  .gallery { display: flex; overflow-x: auto; gap: 15px; }
+  .gallery img { width: 260px; border-radius: 20px; flex-shrink: 0; }
+  audio, video { width: 100%; margin-top: 15px; }
+
+  /* ===== Puzzle Styles ===== */
+  #puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+    margin: 20px auto;
+    width: 300px;
+    height: 300px;
+  }
+
+  .piece {
+    cursor: grab;
+    border: 1px solid #ccc;
+    background-size: 300px 300px;
+    background-repeat: no-repeat;
+    height: 100px;
+    transition: all 0.2s ease;
+  }
+
+
+  .piece:active { cursor: grabbing; }
+
+  /* ===== Win Message ===== */
+  #win-message {
+    display: none;
+    background: linear-gradient(45deg, #edd1d5, #562f3c);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+    text-align: center;
+    max-width: 300px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 10;
+  }
+
+  #win-message.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <!-- كارد القفل -->
+  <div class="card" id="lock">
+    <h1>اعتذار يليق بيك ي بشمهندس</h1>
+    <p>..💕Ektb tareekh momayez bena ya bashmohandes</p>
+    <input type="text" id="code" placeholder="e.g. تاريخ مميز بينا" />
+    <button onclick="unlock()">Unlock 😶‍🌫️</button>
+  </div>
+
+  <!-- المحتوى المخفي -->
+  <div id="content" class="hidden">
+    <div class="card">
+      <h2>اعتذار للبشمهندس جوزي</h2>
+      <div class="message">
+           <br>اذيك ي بشمهندس عرفه اني زعلتك قولت اصالحك بطريقه مهندسين بقا متزعلش مني مقدرش علي زعلك والله عرفه اني بعصبك كتير وبطلع عينك بس في الاخر معنديش اغلي منك والله بحبك وحقك عليا مش عيزاك تزعل مني وعيزاك تبقي متأكد اني بعصبك وبطلع عينك دا حب عالفكره لو مش بحبك هعصبك لي يعني بحبك ي بشمهندس..💕 <br>
+       
+       <br>معنديش اغلي منك عالفكره ودي حاجه بسيطه اصالحك بيها <br>
+
+     💕 لف يو ي لولو
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Our Memories</h2>
+      <div class="gallery">
+        <img src="img1.jpg.JPG" />
+        <img src="img2.jpg.JPG" />
+        <img src="img4.jpg.JPG" />
+      </div>
+      <p>كل صوره ليها ذكري جوانا متتنسيش ابدا </p>
+    </div>
+
+    <div class="card">
+      <h2>🎵 أول أغنية سمعناها سوا</h2>
+      <audio controls>
+        <source src="music.mp3.mp3" type="audio/ogg">
+      </audio>
+    </div>
+
+    <div class="card">
+      <h2>Our Memories</h2>
+      <div class="gallery">
+        <img src="img5.jpg.jpeg">
+        <img src="img6.jpg.jpeg">
+      </div>
+      <p>أول مشاعر بينا تكون متلخبطة وتوتر ومن بعدها بدأ حبنا وان شاء الله حبنا اللي مالي ذكريتنا يشوفه اولادنا واحفدنا...</p>
+    </div>
+
+    <div class="card">
+      <h2>A video that tells every feeling and memory between us</h2>
+      <video controls width="100%">
+        <source src="video1.mp4.MP4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- ===== Puzzle Card ===== -->
+    <div class="card">
+      <h2>رتب الصوره زي م رتبت قلبي💕</h2>
+      <div id="puzzle-container"></div>
+    </div>
+
+    <!-- ===== كارد الرسالة النهائية ===== -->
+    <div class="card">
+      <h2> عرفت ترتب الصورة… زي ما عرفت ترتب قلبي، حقك عليا يا بشمهندس 💌🤍</h2>
+      <p>
+      <br>  بحبك جدًا وده مجرد حاجه بسيطه بالذكريات الجميلة اللي بينا💕<br>
+      
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+let attempts = 0;
+let won = false;
+
+function unlock() {
+  const code = document.getElementById('code').value.trim();
+  if (code === '5/12') {
+    document.getElementById('lock').style.display = 'none';
+    document.getElementById('content').classList.remove('hidden');
+    requestAnimationFrame(() => startPuzzle());
+  } else {
+    attempts++;
+    if (attempts === 1) alert('Wrong date 💔');
+    else if (attempts === 2) alert('ركز ي هندسه');
+    else if (attempts === 3) alert('ركز بس هتعرف التاريخ عشان مخليش يومك مش معدي😒');
+    else alert('كفاية بقى التاريخ سهل😅');
+  }
+}
+
+/* ===== Puzzle Game ===== */
+function startPuzzle() {
+  const imageURL = 'https://i.postimg.cc/MTzRJZ5T/2025-03-16-13-34-IMG-9159.jpg';
+  const container = document.getElementById('puzzle-container');
+  container.innerHTML = '';
+
+  let positions = [];
+  for (let i = 0; i < 9; i++) positions.push(i);
+  positions = shuffle(positions);
+
+    positions.forEach((pos, index) => {
+    const piece = document.createElement('div');
+    piece.classList.add('piece');
+    piece.style.backgroundImage = `url(${imageURL})`;
+    piece.style.backgroundSize = '300px 300px';
+    const x = -(pos % 3) * 100;
+    const y = -Math.floor(pos / 3) * 100;
+    piece.style.backgroundPosition = `${x}px ${y}px`;
+
+    piece.setAttribute('data-correct', pos);
+    piece.setAttribute('data-pos', index);
+    piece.setAttribute('draggable', 'true');
+    container.appendChild(piece);
+  });
+  
+  enableDrag(container);
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function enableDrag(container) {
+    let dragSource = null;
+
+    container.addEventListener('dragstart', e => {
+      if (!e.target.classList.contains('piece')) return;
+      dragSource = e.target;
+    });
+
+    container.addEventListener('dragover', e => e.preventDefault());
+
+    container.addEventListener('drop', e => {
+      if (!e.target.classList.contains('piece')) return;
+      if (dragSource && dragSource !== e.target) swapPieces(dragSource, e.target);
+      dragSource = null;
+      checkWin();
+    });
+
+    // Touch for mobile
+    container.addEventListener('touchstart', e => {
+      const touch = e.touches[0];
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (target && target.classList.contains('piece')) dragSource = target;
+    });
+
+    container.addEventListener('touchend', e => {
+      if (!dragSource) return;
+      const touch = e.changedTouches[0];
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (target && target.classList.contains('piece') && target !== dragSource) {
+        swapPieces(dragSource, target);
+        checkWin();
+      }
+      dragSource = null;
+    });
+
+    function swapPieces(a, b) {
+      const tempPos = a.style.backgroundPosition;
+      a.style.backgroundPosition = b.style.backgroundPosition;
+      b.style.backgroundPosition = tempPos;
+
+      const tempData = a.getAttribute('data-pos');
+      a.setAttribute('data-pos', b.getAttribute('data-pos'));
+      b.setAttribute('data-pos', tempData);
+    }
+
+    function checkWin() {
+      if (won) return;
+
+      const pieces = document.querySelectorAll('.piece');
+      for (let i = 0; i < pieces.length; i++) {
+        if (pieces[i].getAttribute('data-pos') != pieces[i].getAttribute('data-correct')) return;
+      }
+
+      won = true;
+      const winCard = document.getElementById('win-message');
+      winCard.classList.add('show');
+      winCard.scrollIntoView({behavior: "smooth"});
+    }
+  }
+}
+</script>
+
+</body>
+</html>
